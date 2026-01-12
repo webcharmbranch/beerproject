@@ -1,0 +1,47 @@
+#id_brand__name{
+	/*управление споском брендов*/
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+}
+
+
+.vertical-form {
+	display: flex;
+	flex-direction: column;
+}
+
+#id_price__gt{
+	width: 80%;
+}
+
+#id_price__lt{
+	width: 80%;
+}
+
+.price-horizontal {
+	display: flex;
+	flex-direction: row;
+	justify-content: left;
+}
+
+.price-label {
+	margin-right: 2%;
+}
+
+.empty-search{
+	margin: 0 auto;
+}
+
+/*.drop-down{
+	position: relative;
+    display: inline-block;
+}
+
+.brand_widget {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    padding: 1% 1.5%;
+    z-index: 1;
+}*/

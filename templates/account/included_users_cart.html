@@ -1,0 +1,88 @@
+
+{% load carts_tags %}
+
+{% user_carts request as carts %}
+<h3>
+      <span class="shopper"></span> Корзина
+    </h3>
+    <a href="/" class="visibility-cart transition is-open">X</a>
+
+
+{% if not carts %}
+            <div class="empty"><p>Здесь пока ничего нет</p></div>
+  {% else %}
+  <div class="cart transition is-open">
+
+    <div class="table">
+
+      <div class="layout-inline row_cart th">
+        <div class="col_cart col-pro">Название</div>
+        <div class="col_cart col-price align-center ">
+          Цена
+        </div>
+        <div class="col_cart col-qty align-center">Количество</div>
+        <div class="col_cart">Всего</div>
+        <div class="col_cart">Удалить</div>
+      </div>
+      <form method="POST" action="">
+      {% csrf_token %}
+      {% for cart in carts %}
+      <div class="layout-inline row_cart">
+
+        <div class="col_cart col-pro layout-inline">
+          <div class="basket_first_column">
+                <img src={{cart.item.img.url}} alt="{{cart.item.name}}" style="width:50px;"/>
+                <a href="/item/{{item.item.id}}/" class="remove_a_decoration"><p>{{cart.item.name}}</p></a>
+          </div>
+        </div>
+
+        <div class="col_cart col-price col-numeric align-center ">
+          <p>{{cart.item.sell_price}} руб</p>
+        </div>
+
+        <div class="col_cart col-qty layout-inline">
+            <a href="{% url 'cart:cart_change' %}" class="qty qty-minus decrement"
+            data-cart-id="{{cart.id}}" data-cart-change-url="{% url 'cart:cart_change' %}">
+                {% csrf_token %}
+                -</a>
+            <input type="number" class="number_cl" name="quantity_inp" value={{cart.quantity}} />
+            <a href="{% url 'cart:cart_change' %}" class="qty qty-plus increment"
+            data-cart-id="{{cart.id}}" data-cart-change-url="{% url 'cart:cart_change' %}">
+                {% csrf_token %}
+                +</a>
+        </div>
+
+        <div class="col_cart col-vat col-numeric">
+          <p>{% widthratio cart.item.sell_price 1 cart.quantity %} руб</p>
+        </div>
+
+          <div class="col_cart col-total col-numeric"><div class="del_pad"><p><a href="{% url 'cart:cart_remove' %}" class="remove-from-cart" data-cart-id="{{cart.id}}">
+              {% csrf_token %}
+              X</a></p></div>
+        </div>
+      </div>
+      <div><hr/></div>
+      <div> <br> </div>
+
+      {% endfor %}
+          <!--<div> <br> </div>
+          <div> <br> </div>
+          <div> <br> </div> -->
+
+      </form>
+
+       <div class="tf">
+          <div class="row_cart layout-inline">
+           <div class="col_cart">
+             <p>Итого</p>
+           </div>
+              <div class="col_cart"><p>{{carts.total_price}} руб</p></div>
+         </div>
+       </div>
+
+  </div>
+
+      <div class="basket_button"><a href="{% url 'orders:create_order' %}" class="btn btn-basecolor">Оформить заказ</a></div>
+    {% endif %}
+</div>
+

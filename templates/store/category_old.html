@@ -1,0 +1,40 @@
+{% extends 'store/index.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/category.css' %}">
+{% endblock %}
+
+{% block title %}
+Категория: {{category_name}}
+{% endblock title %}
+
+{% block filters %}
+
+<form class="vertical-form" method="GET">
+    {{form.name.label}}
+    {{form.name}}
+    {{form.discount.label}}
+    {{form.discount}}
+
+    <div class="price-horizontal">
+        <div class="price-label">{{form.price__gt.label}}</div>
+        <div>{{form.price__gt}}</div>
+        <div>{{form.price__lt}}</div>
+    </div>
+    {{form.brand__name.label}}
+    {{form.brand__name}}
+    {{form.beer_style__name.label}}
+    {{form.beer_style__name}}
+
+    <div>{{form.volume__value.label}}, л</div>
+        {{ form.volume__value }}
+    
+    {{form.package_type__name.label}}
+    {{form.package_type__name}}
+    {{form.country__name.label}}
+    {{form.country__name}}
+    <input type="submit" value="Submit" class="btn-basecolor btn" />
+</form>
+
+{% endblock filters %}

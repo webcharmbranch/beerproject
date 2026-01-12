@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% if messages %}
+{% for message in messages %}
+<div>{{ message }}</div>
+{% endfor %}
+{% endif%}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+</head>
+<body>
+{% if user.is_authenticated %}
+<form method="POST" action="{% url 'account:logout' %}">
+{% csrf_token %}
+    <!--<a href="{% url 'account:logout' %}">Выйти</a>-->
+    <button type="submit" class="btn btn-basecolor login-out">Выход</button>
+</form>
+{% endif %}
+<h1>Авторизация</h1>
+<form method="POST">
+{% csrf_token %}
+    <div class="form-error">{{ form.non_field_errors }}</div>
+    {% for field in form %}
+    <p><label class="form-label" for="{{fielf.id_for_label}}">{{field.label}}</label>{{ field }}</p>
+    <div class="form-error">{{ field.errors }}</div>
+    {% endfor %}
+    <p><button type="submit">Войти</button></p>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+
+<!-- контроллер basket.views.show_basket передает в этот шаблон context = {'basket_items': basket_items, 'basket_sum': basket_sum} -->
+
+{% extends 'basket/base_basket.html' %}
+{% load static %}
+{% load carts_tags %}
+
+{% user_carts request as carts %}
+
+        {% block title %}
+        Корзина
+        {% endblock title %}
+
+        {% block css_add %}
+        <link rel="stylesheet" href="{% static "css/cart.css" %}">
+        {% endblock css_add %}
+
+
+    {% block heading %}
+    <h3>
+      <span class="shopper"></span> Корзина
+    </h3>
+    <a href="/" class="visibility-cart transition is-open">X</a>
+    {% endblock heading %}
+
+
+  {% block content %}
+  {% if not carts %}
+            <div class="empty"><p>здесь пока ничего нет</p><div>
+  {% else %}
+  <div class="cart transition is-open">
+
+    <div class="table">
+      
+      <div class="layout-inline row_cart th">
+        <div class="col_cart col-pro">Название</div>
+        <div class="col_cart col-price align-center ">
+          Цена
+        </div>
+        <div class="col_cart col-qty align-center">Количество</div>
+        <div class="col_cart">Всего</div>
+        <div class="col_cart">Удалить</div>
+      </div>
+      <form method="POST" action="">
+      {% csrf_token %}
+      {% for cart in carts %}
+      <div class="layout-inline row_cart">
+        
+        <div class="col_cart col-pro layout-inline">
+          <div class="basket_first_column">
+                <img src={{cart.item.img.url}} alt="{{cart.item.name}}" style="width:50px;"/>
+                <a href="/item/{{item.item.id}}/" class="remove_a_decoration"><p>{{cart.item.name}}</p></a>
+          </div>
+        </div>
+        
+        <div class="col_cart col-price col-numeric align-center ">
+          <p>{{cart.item.price.normalize}}руб</p>
+        </div>
+
+        <div class="col_cart col-qty layout-inline">
+            <a href="/basket/subtract/{{cart.item.id}}" class="qty qty-minus">-</a>
+            <input type="number" name="quantity" value={{cart.quantity}} />
+            <a href="/basket/add/{{cart.item.id}}" class="qty qty-plus">+</a>
+        </div>
+
+        <div class="col_cart col-vat col-numeric">
+          <p>{% widthratio cart.item.price.normalize 1 item.count %}руб</p>
+        </div>
+
+          <div class="col_cart col-total col-numeric">               <div class="del_pad"><p><a href="/basket/delete/{{item.id}}">X</a></p></div>
+        </div>
+      </div>
+      <div><hr/></div>
+      <div> <br> <div>
+
+      {% endfor %}
+          <div class="basket_button"><input class="btn btn-basecolor" type="submit" value="Обновить корзину"></div>
+          <div> <br> <div>
+          <div> <br> <div>
+          <div> <br> <div>
+
+      </form>
+  
+       <div class="tf">
+          <div class="row_cart layout-inline">
+           <div class="col_cart">
+             <p>Итого</p>
+           </div>
+              <div class="col_cart"><p>{{basket_sum.normalize}} руб</p></div>
+         </div>
+       </div>
+
+  </div>
+    
+      <div class="basket_button"><a href="/basket/order/" class="btn btn-basecolor">Оформить заказ</a></div>
+    {% endif %}
+</div>
+  {% endblock content %}

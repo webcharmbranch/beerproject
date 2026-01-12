@@ -1,0 +1,1 @@
+[{"model": "store.category", "pk": 1, "fields": {"name": "Пиво", "slug": "pivo"}}, {"model": "store.category", "pk": 2, "fields": {"name": "Разливное пиво", "slug": "razlivnoe-pivo"}}, {"model": "store.category", "pk": 3, "fields": {"name": "Сидр", "slug": "sidr"}}]

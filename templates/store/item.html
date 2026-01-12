@@ -1,0 +1,40 @@
+
+<!-- контроллер store.views.show_item передает в этот шаблон {'item': item, 'basket_sum': basket_sum} -->
+
+{% extends 'base.html' %}
+
+{% block title %}
+    Продукт: {{item}}
+{% endblock title %}
+
+{% block content %}
+<div class="beer_title" style="display: flex; justify-content: center;"><div><h3>{{item}}</h3></div></div>
+    <div class="row m-5">
+        <div class="col-md-3">
+            <img src={{item.img.url}} width="50%"/>
+        </div>
+        <div class="col-md-9">
+            <p>Бренд: {{item.brand.name}}</p>
+            <p>Стиль: {{item.beer_style.name}}</p>
+            <p>Объем: {{item.volume.value.normalize}}л</p>
+            <p>Тип упаковки: {{item.package_type.name}}</p>
+            <p>Страна: {{item.country.name}}</p>
+            <p>Категория: {{item.category.name}}</p>
+            <p>Скидка: {{item.discount.value}}%</p>
+            <p>Количество на складе: {{item.stock}}</p>
+            <p>Описание: {{item.description}}</p>
+            <p>Цена: {{item.price.normalize}}руб</p>
+        </div>
+    </div>
+    <div class="m-5">
+        <div class="row d-flex justify-content-center align-content-center">
+            <div><a href="{% url 'cart:cart_add' %}" class="btn btn-basecolor add-to-cart"
+            data-product-id="{{item.id}}">
+                {% csrf_token %}
+                Добавить в корзину</a></div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block paginator %}
+{% endblock paginator %}

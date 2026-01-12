@@ -1,0 +1,22 @@
+{% extends 'carts/base_basket.html' %}
+{% load static %}
+
+
+
+
+{% block title %}
+Корзина
+{% endblock title %}
+
+{% block styles %}
+        <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
+
+{% block notification %}
+    {% include 'carts/notifications.html' %}
+{% endblock %}
+{% block content %}
+<div id="cart-items-container">
+    {% include 'account/included_users_cart.html' %}
+</div>
+{% endblock %}

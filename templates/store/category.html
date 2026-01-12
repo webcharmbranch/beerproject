@@ -1,0 +1,58 @@
+{% extends 'store/index.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/category.css' %}">
+{% endblock %}
+
+{% block title %}
+Категория: {{category_name}}
+{% endblock title %}
+
+{% block category %}
+{% if empty_search %}
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-auto">    
+        <h3>{{empty_search}}</h3>
+    </div>
+  </div>
+</div>  
+{% endif %}
+{% endblock category %}
+
+{% block filters %}
+
+<form class="vertical-form" method="GET" {% if request.GET.q %} action="{% url 'store:search' %}"{% endif %}>
+    {% if request.GET.q %}
+        <input type="hidden" name="q" value="{{ request.GET.q }}">
+    {% endif %}
+    {{form.name.label}}
+    {{form.name}}
+    {{form.discount.label}}
+    {{form.discount}}
+
+    <div class="price-horizontal">
+        <div class="price-label">{{form.price__gt.label}}</div>
+        <div>{{form.price__gt}}</div>
+        <div>{{form.price__lt}}</div>
+    </div>
+    <div class="drop-down">{{form.brand__name.label}}
+        {{form.brand__name}}
+    </div>
+    {{form.beer_style__name.label}}
+    {{form.beer_style__name}}
+
+    <div>{{form.volume__value.label}}{% if form %}, л{% endif %}</div>
+        {{ form.volume__value }}
+    
+    {{form.package_type__name.label}}
+    {{form.package_type__name}}
+    {{form.country__name.label}}
+    {{form.country__name}}
+    {% if form %}
+    <input type="submit" value="Применить" class="btn-basecolor btn" />
+    {% endif %}
+</form>
+
+{% endblock filters %}

@@ -1,0 +1,22 @@
+{% load static %}
+{% block styles %}
+        <link rel="stylesheet" href="{% static 'css/logbar.css' %}">
+{% endblock %}
+
+
+{% if not request.user.is_authenticated %}
+    <a href="{% url 'account:login' %}" class="btn btn-basecolor"> Авторизация </a>
+{% else %}
+    
+        <form method="post" action="{% url 'account:logout' %}">
+        {% csrf_token %}
+    <div class="greeting-user">
+    <div>
+        <p class="mt-3 pgreeting">Здравствуйте, <a href="#{#{%url 'contacts' %}#}">{{request.user}}</a></p>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-basecolor login-out">Выход</button> 
+    </div>
+    </div>
+    </form>
+{% endif %}

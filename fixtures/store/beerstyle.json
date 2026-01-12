@@ -1,0 +1,1 @@
+[{"model": "store.beerstyle", "pk": 1, "fields": {"name": "эль", "description": ""}}, {"model": "store.beerstyle", "pk": 2, "fields": {"name": "лагер", "description": ""}}, {"model": "store.beerstyle", "pk": 3, "fields": {"name": "стаут", "description": ""}}]

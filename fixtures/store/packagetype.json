@@ -1,0 +1,1 @@
+[{"model": "store.packagetype", "pk": 1, "fields": {"name": "стеклянная бутылка"}}, {"model": "store.packagetype", "pk": 2, "fields": {"name": "алюминиевая банка"}}, {"model": "store.packagetype", "pk": 3, "fields": {"name": "кег"}}]

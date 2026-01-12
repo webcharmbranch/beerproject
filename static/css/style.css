@@ -1,0 +1,150 @@
+html{
+    background-color: #F6EDE0;
+}
+
+.form-control {
+    height: 30px;
+}
+
+.refresh_profile{
+    justify-content: center;
+	display: flex;
+	margin: 20px;
+}
+
+.right_menu{
+    padding: 10px;
+}
+
+.search_align{
+    display: flex;
+    /* align-items: center;
+    align-content: center; */
+    height: 100%;
+
+}
+
+.search_child{
+    align-self: center;
+    margin: 5px;
+}
+
+.label_auth_name{
+	font-size: 1.3em;
+	justify-content: center;
+	display: flex;
+	margin: 30px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: .5s ease-in-out;
+}
+
+.input_auth_forms{
+	justify-content: center;
+	display: flex;
+	margin: 20px auto;
+	padding: 10px;
+	/*border: none;
+	outline: none; */
+	border-radius: 5px;
+}
+
+/*
+button{
+	margin: 10px auto;
+	justify-content: center;
+	display: block;
+	margin-top: 20px;
+}
+*/
+
+btn1{
+	width: 60%;
+	height: 40px;
+	/* padding: 10px auto; */
+	justify-content: center;
+	display: block;
+	color: #fff;
+	background: #BB8C64;
+	font-size: 1em;
+	font-weight: bold;
+	/* padding-top: 20px; */
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	transition: .2s ease-in;
+	cursor: pointer;
+}
+
+.credentials{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.s_up{
+	padding: 10px;
+}
+
+.signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-img-top {
+    height:300px;
+    width: auto;
+}
+
+
+#icon_store{
+    height: 100px;
+}
+
+.menu{
+    background-color:#F6EDE0;
+}
+
+.flatten-login-bar {
+	justify-content: center;
+	display: flex;
+	flex-direction: row;
+}
+
+
+.btn-basecolor{
+    background-color:#BB8C64;
+    color:white;
+}
+
+.btn-basecolor:hover{
+    background-color:#BB8C64;
+    color:white;
+}
+
+.paginator {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 1%;
+}
+
+.paginator_pages {
+    padding-left: 1%;
+}
+
+.end_bracket {
+    padding-left: 1%;
+}
+
+.list-group-item {
+    text-decoration: none;
+}
+
+.login_area {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}

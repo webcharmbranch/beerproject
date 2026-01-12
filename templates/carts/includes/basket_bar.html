@@ -1,0 +1,9 @@
+{% load carts_tags %}
+
+{% user_carts request as carts %}
+{% if carts %}
+<p class="mt-3" style="align-self: center;">У Вас {{carts.total_quantity}} товаров на {{ carts.total_price }}руб <a href="{% url 'account:users_cart' %}" class="btn btn-basecolor">Корзина</a> </p>
+
+{% else %}
+<p class="mr-2 mt-3" style="align-self: center;">Нет товаров <a href="{% url 'account:users_cart' %}" class="btn btn-basecolor">Корзина</a></p>
+{% endif %}

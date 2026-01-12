@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load my_tags %}
+{% load static %}
+
+
+{% block styles %}
+{% endblock %}
+
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+
+{% block notification %}
+    {% include 'carts/notifications.html' %}
+{% endblock %}
+
+{% block category %}
+{% endblock category %}
+
+{% block filters %}
+{% endblock filters %}
+
+
+{% block content %}
+<div class="row">
+{% for item in items %}
+    <div class="col">
+        <div class="card my-2" style="width: 18rem;">
+          <h5 class="card-title"> </h5>
+              <a href="{{item.get_absolute_url}}"><div class="row d-flex justify-content-center align-content-center">
+                  <img class="card-img-top" src={{item.img.url}} alt="Card image cap" width=""></div></a>
+          <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+            <p class="card-text">объем {{item.volume.value.normalize}}л</p>
+              <p class="card-text"><h3>{{item.price.normalize}}руб</h3></p>
+            <a href="{% url 'cart:cart_add' %}" class="btn btn-basecolor c-w add-to-cart"
+            data-product-id="{{item.id}}">
+                {% csrf_token %}
+                Добавить в корзину</a>
+          </div>
+        </div>
+    </div>
+{% endfor %}
+{% endblock content %}
+{% block paginator %}
+
+{% if page_obj.has_other_pages %}
+<nav>
+    <ul class="paginator list-unstyled">
+        {% if page_obj.has_previous %}
+            <li class="page-num m-1">
+            <a class="text-decoration-none" href="?{% change_params page=page %}{{ page_obj.previous_page_number }}">&lt;</a>
+            </li>
+        {% endif %}
+
+        {% for page in paginator.page_range %}
+        {% if page_obj.number == page %}
+        <li class="page-num page-num-selected m-1">{{ page }}</li>
+        {% else %}
+            <li class="paginator-pages m-1">
+            <a class="text-decoration-none" href="?{% change_params page=page %}">{{ page }} </a>
+            </li>
+        {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-num m-1">
+            <a class="text-decoration-none" href="?{% change_params page=page %}{{ page_obj.next_page_number }}">&gt;</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+
+{% endblock paginator %}
