@@ -31,8 +31,10 @@ class VolumeNormQs(models.QuerySet):
 
     def normalize_value(self):
         if self:
+            # print('VALUES_FROM MYMANAGER', self.values)
             new_qs = dict()
             for item in self.values():
+                # print('INITIAL_DICT_ITEMS', item)
                 if item['value'] < 1:
                     new_qs[item['id']]= item['value'].normalize()
                 else:
@@ -47,9 +49,9 @@ class Volume(models.Model):
 
     def __str__(self):
         if self.value < 1:
-            return str(self.value.normalize())+'л'
+            return str(self.value.normalize())
         else:
-            return str(int(self.value))+'л'
+            return str(int(self.value))
     class Meta:
         verbose_name = 'Объем'
         verbose_name_plural = 'Объемы'
